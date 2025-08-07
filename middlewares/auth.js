@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import apiResponse from "../utils/apiResponse";
+import apiResponse from "../utils/apiResponse.js";
 
 const checkAuth = async (req, res, next) => {
   try {

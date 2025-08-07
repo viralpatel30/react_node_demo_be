@@ -1,7 +1,7 @@
-import { Product, Variant } from "../utils";
-import apiResponse from "../utils/apiResponse";
+import { Product, Variant } from "../utils/index.js";
+import apiResponse from "../utils/apiResponse.js";
 
-export const createProduct = async (req, res) => {
+const createProduct = async (req, res) => {
   try {
     const { name, variants } = req.body;
 
@@ -35,7 +35,7 @@ export const createProduct = async (req, res) => {
   }
 };
 
-export const getProducts = async (req, res) => {
+const getProducts = async (req, res) => {
   try {
     const products = await Product.findAll({
       include: [
@@ -54,3 +54,5 @@ export const getProducts = async (req, res) => {
       .json(apiResponse(false, error.message || "Failed to fetch products"));
   }
 };
+
+export { createProduct, getProducts };
