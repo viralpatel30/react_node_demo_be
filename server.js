@@ -5,18 +5,21 @@ import { connectDB } from "./config/database.js";
 import "./utils/index.js";
 import authRouter from "./routes/authRouter.js";
 import productRouter from "./routes/productRouter.js";
+const port = process.env.PORT || 4000;
 
 const app = express();
-connectDB();
+await connectDB();
 
 //middlewares
 app.use(express.json());
 app.use(cors());
 
 // api endpoints
-app.use("/api", authRouter);
-app.use("/api", productRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/product", productRouter);
 
 app.get("/", (req, res) => {
   res.send("API working!!!");
 });
+
+app.listen(port, () => console.log(`🚀 Server running on port ${port} `));

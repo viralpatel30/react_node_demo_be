@@ -3,21 +3,20 @@ import apiResponse from "../utils/apiResponse.js";
 
 const checkAuth = async (req, res, next) => {
   try {
-    const { atoken } = req.headers;
-    if (!atoken) {
+    console.log("req.headers", req.headers);
+    const { token } = req.headers;
+    if (!token) {
       return res.json(
         apiResponse(false, "Not Authorized! Please Login again.")
       );
     }
-
-    const token_decode = jwt.verify(atoken, process.env.JWT_SECRET);
-    if (token_decode) {
+    const token_decode = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("token_decode", token_decode);
+    if (!token_decode.id) {
       return res.json(
         apiResponse(false, "Not Authorized! Please Login again.")
       );
     }
-    req.body.userId = token_decode.id;
-
     next();
   } catch (error) {
     console.log(error);

@@ -17,9 +17,7 @@ export async function connectDB() {
     await sequelize.authenticate();
     console.log("✅ MySQL Connected");
 
-    await sequelize.sync({ alter: true });  
-
-    app.listen(port, () => console.log(`🚀 Server running on port ${port} `));
+    await sequelize.sync();
   } catch (err) {
     console.error("❌ Error:", err);
   }
