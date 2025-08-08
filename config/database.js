@@ -3,14 +3,12 @@ import express from "express";
 
 const app = express();
 
-const sequelize = new Sequelize("assignment_task", "root", "mineSQL#30", {
+const sequelize = new Sequelize(process.env.DATABASE_NAME, "root", process.env.MYSQL_PASSWORD, {
   dialect: "mysql",
   host: "localhost",
 });
 
 export default sequelize;
-
-const port = process.env.PORT || 4000;
 
 export async function connectDB() {
   try {

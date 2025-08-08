@@ -34,7 +34,7 @@ const login = async (req, res) => {
       { id: user.id, role: user.role },
       process.env.JWT_SECRET,
       {
-        expiresIn: "1d",
+        expiresIn: "1h", // Token expiration time
       }
     );
 
@@ -86,13 +86,11 @@ const registerUser = async (req, res) => {
       role: "user",
     };
 
-    console.log("userData", userData);
     const newUser = await User.create(userData);
     await newUser.save();
 
     res.json(apiResponse(true, "User registered successfully"));
   } catch (err) {
-    console.log("err:", err);
     res.json(
       apiResponse(false, err.message || "Error occured while registering user")
     );

@@ -5,6 +5,8 @@ import { connectDB } from "./config/database.js";
 import "./utils/index.js";
 import authRouter from "./routes/authRouter.js";
 import productRouter from "./routes/productRouter.js";
+
+dotenv.config();
 const port = process.env.PORT || 4000;
 
 const app = express();
